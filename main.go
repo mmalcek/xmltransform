@@ -34,7 +34,12 @@ func main() {
 	if err != nil {
 		log.Fatal("mapXML: ", err.Error())
 	}
-	template, err := template.ParseFiles(*textTemplate)
+	templateFile, err := ioutil.ReadFile(*textTemplate)
+	if err != nil {
+		log.Fatal("readFile: ", err.Error())
+	}
+
+	template, err := template.New("new").Funcs(templateFunctions()).Parse(string(templateFile))
 	if err != nil {
 		log.Fatal("parseTemplate: ", err.Error())
 	}
