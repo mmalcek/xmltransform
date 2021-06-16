@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TOP_LEVEL server="myServer">
+  <PROJECT_LEDGER_LINE>
+    <Employee VALUE="0021">
+    </Employee>
+    <Trans_Date>2016-05-03</Trans_Date>
+    <Account_Period VALUE="2016005">
+    </Account_Period>
+    <val1>5</val1>
+    <val2>12</val2>
+    <val3>18</val3>
+    <Linked_Text VALUE="Magic Bus Company">
+    </Linked_Text>
+  </PROJECT_LEDGER_LINE>
+  <PROJECT_LEDGER_LINE>
+    <Employee VALUE="0023">
+    </Employee>
+    <Trans_Date>2016-05-04</Trans_Date>
+    <Account_Period VALUE="2016005">
+    </Account_Period>
+    <val1>3</val1>
+    <val2>9</val2>
+    <val3>5</val3>
+    <Linked_Text VALUE="Baltimore Grand">
+    </Linked_Text>
+  </PROJECT_LEDGER_LINE>
+</TOP_LEVEL>
