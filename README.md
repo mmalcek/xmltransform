@@ -1,10 +1,12 @@
-# xmltransform
-Transform XML files to text using GO template text
+# xmltransform - XML to TEXT using GO templates
+Transform XML to text file using GO "text/template"
 
-use: xmltransform -i inputdata.xml -o output.csv -t template.tmpl
+use: *xmltransform -i inputdata.xml -o output.csv -t template.tmpl*
+
 (If -o is not defined result is written to stdout)
 
 Check template.tmpl and inputdata.xml to see how to format data
+
 (more detailed info on https://golang.org/pkg/text/template/ )
 
 ## Available functions
