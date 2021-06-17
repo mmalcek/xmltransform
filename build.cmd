@@ -23,6 +23,7 @@ EXIT /B 0
     CALL go build -trimpath -ldflags "-s -w" -o ./dist/windows/xmltransform.exe
     COPY "inputdata.xml" "./dist/windows/inputdata.xml"
     COPY "template.tmpl" "./dist/windows/template.tmpl"
+    COPY "README.md" "./dist/windows/README.md"
     ECHO xmltransform.exe -i inputdata.xml -o outputFile.csv -t template.tmpl > ./dist/windows/testme.bat
     ECHO "WINDOWS ready"
 EXIT /B 0
@@ -33,10 +34,12 @@ EXIT /B 0
     CALL go build -trimpath -ldflags "-s -w" -o ./dist/linux/xmltransform
     COPY "inputdata.xml" "./dist/linux/inputdata.xml"
     COPY "template.tmpl" "./dist/linux/template.tmpl"
+    COPY "README.md" "./dist/linux/README.md"
     ECHO "LINUX ready"
 EXIT /B 0
 
 :ZIP
-    CALL 7z.exe a -tzip ./dist/dist.zip ./dist
+    CALL 7z.exe a -tzip ./dist/windows.zip ./dist/windows/*
+    CALL 7z.exe a -tzip ./dist/linux.zip ./dist/linux/*
     ECHO "ZIP ready"
 EXIT /B 0
