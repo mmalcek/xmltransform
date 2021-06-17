@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"flag"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -12,15 +14,12 @@ import (
 
 func main() {
 	inputFile := flag.String("i", "", "input file")
-	outputFile := flag.String("o", "", "output file")
+	outputFile := flag.String("o", "", "output file, if not defined stdout is used")
 	textTemplate := flag.String("t", "", "template")
 	flag.Parse()
 
 	if *inputFile == "" {
 		log.Fatal("input file must be defined: -i input.xml", *inputFile)
-	}
-	if *outputFile == "" {
-		log.Fatal("output file must be defined: -o output.csv")
 	}
 	if *textTemplate == "" {
 		log.Fatal("template file must be defined: -t template.tmpl")
@@ -38,18 +37,26 @@ func main() {
 	if err != nil {
 		log.Fatal("readFile: ", err.Error())
 	}
-
 	template, err := template.New("new").Funcs(templateFunctions()).Parse(string(templateFile))
 	if err != nil {
 		log.Fatal("parseTemplate: ", err.Error())
 	}
-	output, err := os.Create(*outputFile)
-	if err != nil {
-		log.Fatal("createOutputFile: ", err.Error())
-	}
-	defer output.Close()
-	err = template.Execute(output, mapXML)
-	if err != nil {
-		log.Fatal("writeOutputFile: ", err.Error())
+	if *outputFile == "" {
+		output := new(bytes.Buffer)
+		err = template.Execute(output, mapXML)
+		if err != nil {
+			log.Fatal("writeStdout: ", err.Error())
+		}
+		fmt.Print(output)
+	} else {
+		output, err := os.Create(*outputFile)
+		if err != nil {
+			log.Fatal("createOutputFile: ", err.Error())
+		}
+		defer output.Close()
+		err = template.Execute(output, mapXML)
+		if err != nil {
+			log.Fatal("writeOutputFile: ", err.Error())
+		}
 	}
 }

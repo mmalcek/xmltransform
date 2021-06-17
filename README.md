@@ -2,6 +2,7 @@
 Transform XML files to text using GO template text
 
 use: xmltransform -i inputdata.xml -o output.csv -t template.tmpl
+(If -o is not defined result is written to stdout)
 
 Check template.tmpl and inputdata.xml to see how to format data
 (more detailed info on https://golang.org/pkg/text/template/ )
