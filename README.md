@@ -30,9 +30,9 @@ end
 
 ### Call Lua function in template 
 ```
-{{lua "mul" .val1 .val2}}
+{{lua "sum" .val1 .val2}}
 ```
-- "mul" - Lua function name
+- "sum" - Lua function name
 
 ### Call builtin function
 ```
