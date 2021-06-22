@@ -24,7 +24,7 @@ json = require 'json'
 
 function sum(incomingData) 
     dataTable = json.decode(incomingData)
-    return tostring(tonumber(data[1]) + tonumber(data[2]))
+    return tostring(tonumber(dataTable[1]) + tonumber(dataTable[2]))
 end
 ```
 
