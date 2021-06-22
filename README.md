@@ -9,7 +9,35 @@ Check template.tmpl and inputdata.xml to see how to format data
 
 (more detailed info on https://golang.org/pkg/text/template/ )
 
-## Available functions
+## Lua custom functions
+Aside of builtin functions you can use custom lua functions defined in ./lua/functions file
+- Input is always passed as json array of strings
+- Output must be passed as string
+- lua table array starts with 1
+- Lua documentation http://www.lua.org/manual/5.1/
+
+Minimal functions.lua example
+```lua
+json = require 'json'
+
+function sum(incomingData) 
+    dataTable = json.decode(incomingData)
+    return tostring(tonumber(data[1]) + tonumber(data[2]))
+end
+```
+
+### Call Lua function in template 
+```
+{{lua "mul" .val1 .val2}}
+```
+- "mul" - Lua function name
+
+### Call builtin function
+```
+{{add .val1 .val2}}
+```
+
+## Available (builtin) functions
 - add -> {{add .Value1 .Value2}}
 - add1
 - sub

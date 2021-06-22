@@ -21,6 +21,7 @@ EXIT /B 0
     SET GOOS=windows
     SET GOARCH=amd64
     CALL go build -trimpath -ldflags "-s -w" -o ./dist/windows/xmltransform.exe
+    XCOPY /E /I /Q "./lua" "./dist/windows/lua"
     COPY "inputdata.xml" "./dist/windows/inputdata.xml"
     COPY "template.tmpl" "./dist/windows/template.tmpl"
     COPY "README.md" "./dist/windows/README.md"
@@ -32,6 +33,7 @@ EXIT /B 0
     SET GOOS=linux
     SET GOARCH=amd64
     CALL go build -trimpath -ldflags "-s -w" -o ./dist/linux/xmltransform
+    XCOPY /E /I /Q "./lua" "./dist/linux/lua"
     COPY "inputdata.xml" "./dist/linux/inputdata.xml"
     COPY "template.tmpl" "./dist/linux/template.tmpl"
     COPY "README.md" "./dist/linux/README.md"

@@ -10,7 +10,24 @@ import (
 	"text/template"
 
 	"github.com/clbanning/mxj/v2"
+	lua "github.com/yuin/gopher-lua"
 )
+
+var (
+	luaData  *lua.LState
+	luaReady = false
+)
+
+func init() {
+	if _, err := os.Stat("./lua/functions.lua"); !os.IsNotExist(err) {
+		luaData = lua.NewState()
+		err := luaData.DoFile("./lua/functions.lua")
+		if err != nil {
+			log.Fatal("loadLuaFunctions", err.Error())
+		}
+		luaReady = true
+	}
+}
 
 func main() {
 	inputFile := flag.String("i", "", "input file")
@@ -58,5 +75,8 @@ func main() {
 		if err != nil {
 			log.Fatal("writeOutputFile: ", err.Error())
 		}
+	}
+	if luaReady {
+		luaData.Close()
 	}
 }

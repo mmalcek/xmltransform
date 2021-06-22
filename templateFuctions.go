@@ -4,6 +4,8 @@ package main
 import (
 	"encoding/base32"
 	"encoding/base64"
+	"encoding/json"
+	"fmt"
 	"math"
 	"math/rand"
 	"regexp"
@@ -15,10 +17,12 @@ import (
 	"github.com/google/uuid"
 	"github.com/shopspring/decimal"
 	"github.com/spf13/cast"
+	lua "github.com/yuin/gopher-lua"
 )
 
 func templateFunctions() template.FuncMap {
 	return template.FuncMap{
+		"lua":     luaF,
 		"add":     add,
 		"add1":    func(i interface{}) int64 { return toInt64(i) + 1 },
 		"sub":     func(a, b interface{}) int64 { return toInt64(a) - toInt64(b) },
@@ -65,6 +69,26 @@ func templateFunctions() template.FuncMap {
 		"int64":      toInt64,
 		"int":        toInt,
 		"float64":    toFloat64,
+	}
+}
+
+func luaF(i ...interface{}) string {
+	if !luaReady {
+		return "error: ./lua/functions.lua file missing)"
+	}
+	strData, err := json.Marshal(i[1:])
+	if err != nil {
+		return fmt.Sprintf("luaInputError: %s\r\n", err.Error())
+	}
+	if err := luaData.CallByParam(
+		lua.P{Fn: luaData.GetGlobal(i[0].(string)), NRet: 1, Protect: true}, lua.LString(string(strData))); err != nil {
+		return fmt.Sprintf("luaError: %s\r\n", err.Error())
+	}
+	if str, ok := luaData.Get(-1).(lua.LString); ok {
+		luaData.Pop(1)
+		return str.String()
+	} else {
+		return "luaError: getResult"
 	}
 }
 
