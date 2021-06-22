@@ -13,6 +13,8 @@ import (
 	lua "github.com/yuin/gopher-lua"
 )
 
+const version = "1.0.1"
+
 var (
 	luaData  *lua.LState
 	luaReady = false
@@ -33,7 +35,13 @@ func main() {
 	inputFile := flag.String("i", "", "input file")
 	outputFile := flag.String("o", "", "output file, if not defined stdout is used")
 	textTemplate := flag.String("t", "", "template")
+	getVersion := flag.Bool("v", false, "template")
 	flag.Parse()
+
+	if *getVersion {
+		fmt.Printf("Version: %s", version)
+		os.Exit(0)
+	}
 
 	if *inputFile == "" {
 		log.Fatal("input file must be defined: -i input.xml", *inputFile)

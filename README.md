@@ -3,6 +3,8 @@ Transform XML to text file using GO "text/template"
 
 use: *xmltransform -i inputdata.xml -o output.csv -t template.tmpl*
 
+check verion: *xmltransform -v*
+
 (If -o is not defined result is written to stdout)
 
 Check template.tmpl and inputdata.xml to see how to format data
@@ -10,7 +12,7 @@ Check template.tmpl and inputdata.xml to see how to format data
 (more detailed info on https://golang.org/pkg/text/template/ )
 
 ## Lua custom functions
-Aside of builtin functions you can use custom lua functions defined in ./lua/functions file
+Aside of builtin functions you can use custom lua functions defined in ./lua/functions.lua file
 - Input is always passed as json array of strings
 - Output must be passed as string
 - lua table array starts with 1
