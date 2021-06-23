@@ -1,13 +1,30 @@
 # xmltransform - XML to TEXT using GO templates
 Transform XML to text file using GO "text/template"
 
-use: *xmltransform -i inputdata.xml -o output.csv -t template.tmpl*
+## Relase duilds (windows, linux, mac)
+https://github.com/mmalcek/xmltransform/releases
 
-check verion: *xmltransform -v*
+## Command line syntax
+
+- Convert: **xmltransform.exe -i inputdata.xml -o output.csv -t template.tmpl**
+- Check verion: **xmltransform.exe -v**
 
 (If -o is not defined result is written to stdout)
 
-Check template.tmpl and inputdata.xml to see how to format data
+## Template formating
+- Basic iterate over lines (List all values for XML val1)
+```
+{{range .TOP_LEVEL.DATA_LINE}}{{.val1}}{{end}}
+```
+- Use functions (count va1 + val2)
+```
+{{add .val1 .val2}} 
+```
+- If statement 
+```
+{{if gt (int $val1) (int $val2)}}Value1{{else}}Value2{{end}} is greater
+```
+Check template.tmpl and inputdata.xml for more advanced example
 
 (more detailed info on https://golang.org/pkg/text/template/ )
 
@@ -47,7 +64,7 @@ end
 - mod
 - mul
 - randInt
-- add1f
+- add1f - "...f" functions parse float but provide **decimal** operation using https://github.com/shopspring/decimal
 - addf
 - subf
 - divf
@@ -58,7 +75,7 @@ end
 - maxf
 - minf
 - dateFormat -> {{dateFormat .Value "oldFormat" "newFormat"}}
-- now
+- now - {{now "02.01.2006"}} - GO format date (see notes below)
 - b64enc
 - b64dec
 - b32enc
@@ -75,3 +92,7 @@ end
 - int64
 - int
 - float64
+
+### dateFormat
+dateFormat can parse date and time using GO time format
+- https://programming.guide/go/format-parse-string-time-date-example.html

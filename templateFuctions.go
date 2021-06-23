@@ -52,7 +52,7 @@ func templateFunctions() template.FuncMap {
 		"maxf":       maxf,
 		"minf":       minf,
 		"dateFormat": dateFormat,
-		"now":        time.Now,
+		"now":        now,
 		"b64enc":     base64encode,
 		"b64dec":     base64decode,
 		"b32enc":     base32encode,
@@ -98,6 +98,10 @@ func dateFormat(date string, inputFormat string, outputFormat string) string {
 		return date
 	}
 	return timeParsed.Format(outputFormat)
+}
+
+func now(format string) string {
+	return time.Now().Format(format)
 }
 
 func add(i ...interface{}) int64 {

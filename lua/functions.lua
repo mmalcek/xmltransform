@@ -1,4 +1,4 @@
-json = require 'json'
+json = require './lua/json'
 
 function sum(incomingData) 
     dataTable = json.decode(incomingData)
