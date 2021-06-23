@@ -16,6 +16,12 @@ https://github.com/mmalcek/xmltransform/releases
 ```
 {{range .TOP_LEVEL.DATA_LINE}}{{.val1}}{{end}}
 ```
+
+- Get XML tag (-VALUE = tag name)
+```
+{{index .Linked_Text "-VALUE"}}
+```
+
 - Use functions (count va1 + val2)
 ```
 {{add .val1 .val2}} 
