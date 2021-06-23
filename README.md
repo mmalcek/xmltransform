@@ -16,12 +16,10 @@ https://github.com/mmalcek/xmltransform/releases
 ```
 {{range .TOP_LEVEL.DATA_LINE}}{{.val1}}{{end}}
 ```
-
 - Get XML tag (-VALUE = tag name)
 ```
 {{index .Linked_Text "-VALUE"}}
 ```
-
 - Use functions (count va1 + val2)
 ```
 {{add .val1 .val2}} 
@@ -35,7 +33,7 @@ Check template.tmpl and inputdata.xml for more advanced example
 (more detailed info on https://golang.org/pkg/text/template/ )
 
 ## Lua custom functions
-Aside of builtin functions you can use custom lua functions defined in ./lua/functions.lua file
+Aside of builtin functions you can write your own custom lua functions defined in ./lua/functions.lua file
 - Input is always passed as json array of strings
 - Output must be passed as string
 - lua table array starts with 1
@@ -43,7 +41,7 @@ Aside of builtin functions you can use custom lua functions defined in ./lua/fun
 
 Minimal functions.lua example
 ```lua
-json = require 'json'
+json = require './lua/json'
 
 function sum(incomingData) 
     dataTable = json.decode(incomingData)
