@@ -25,6 +25,7 @@ EXIT /B 0
     COPY "inputdata.xml" "./dist/windows/inputdata.xml"
     COPY "template.tmpl" "./dist/windows/template.tmpl"
     COPY "README.md" "./dist/windows/README.md"
+    COPY "LICENSE" "./dist/windows/LICENSE"
     ECHO xmltransform.exe -i inputdata.xml -o outputFile.csv -t template.tmpl > ./dist/windows/testme.bat
     ECHO "WINDOWS ready"
 EXIT /B 0
@@ -37,6 +38,7 @@ EXIT /B 0
     COPY "inputdata.xml" "./dist/linux/inputdata.xml"
     COPY "template.tmpl" "./dist/linux/template.tmpl"
     COPY "README.md" "./dist/linux/README.md"
+    COPY "LICENSE" "./dist/linux/LICENSE"
     ECHO "LINUX ready"
 EXIT /B 0
 
