@@ -33,7 +33,7 @@ func init() {
 }
 
 func main() {
-	inputFile := flag.String("i", "", "input file")
+	inputFile := flag.String("i", "", "input file, if not defined read from stdin")
 	outputFile := flag.String("o", "", "output file, if not defined stdout is used")
 	textTemplate := flag.String("t", "", "template")
 	inputFormat := flag.String("f", "", "input format (json,xml), default xml")
