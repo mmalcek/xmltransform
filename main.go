@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"io/ioutil"
@@ -35,6 +36,7 @@ func main() {
 	inputFile := flag.String("i", "", "input file")
 	outputFile := flag.String("o", "", "output file, if not defined stdout is used")
 	textTemplate := flag.String("t", "", "template")
+	inputFormat := flag.String("f", "", "input format (json,xml), default xml")
 	getVersion := flag.Bool("v", false, "template")
 	flag.Parse()
 
@@ -60,9 +62,17 @@ func main() {
 			log.Fatal("readFile: ", err.Error())
 		}
 	}
-	mapXML, err := mxj.NewMapXml(data)
-	if err != nil {
-		log.Fatal("mapXML: ", err.Error())
+	var mapData map[string]interface{}
+	switch *inputFormat {
+	case "json":
+		if err := json.Unmarshal(data, &mapData); err != nil {
+			log.Fatal("mapJSON: ", err.Error())
+		}
+	default:
+		mapData, err = mxj.NewMapXml(data)
+		if err != nil {
+			log.Fatal("mapXML: ", err.Error())
+		}
 	}
 	templateFile, err := ioutil.ReadFile(*textTemplate)
 	if err != nil {
@@ -74,7 +84,7 @@ func main() {
 	}
 	if *outputFile == "" {
 		output := new(bytes.Buffer)
-		err = template.Execute(output, mapXML)
+		err = template.Execute(output, mapData)
 		if err != nil {
 			log.Fatal("writeStdout: ", err.Error())
 		}
@@ -85,7 +95,7 @@ func main() {
 			log.Fatal("createOutputFile: ", err.Error())
 		}
 		defer output.Close()
-		err = template.Execute(output, mapXML)
+		err = template.Execute(output, mapData)
 		if err != nil {
 			log.Fatal("writeOutputFile: ", err.Error())
 		}
