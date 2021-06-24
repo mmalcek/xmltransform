@@ -43,16 +43,22 @@ func main() {
 		os.Exit(0)
 	}
 
-	if *inputFile == "" {
-		log.Fatal("input file must be defined: -i input.xml", *inputFile)
-	}
 	if *textTemplate == "" {
 		log.Fatal("template file must be defined: -t template.tmpl")
 	}
 
-	data, err := ioutil.ReadFile(*inputFile)
-	if err != nil {
-		log.Fatal("readFile: ", err.Error())
+	var data []byte
+	var err error
+	if *inputFile == "" {
+		data, err = ioutil.ReadAll(os.Stdin)
+		if err != nil {
+			log.Fatal("readStdin: ", err.Error())
+		}
+	} else {
+		data, err = ioutil.ReadFile(*inputFile)
+		if err != nil {
+			log.Fatal("readFile: ", err.Error())
+		}
 	}
 	mapXML, err := mxj.NewMapXml(data)
 	if err != nil {
