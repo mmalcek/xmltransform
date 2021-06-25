@@ -5,11 +5,20 @@ Transform XML to text file using GO "text/template"
 https://github.com/mmalcek/xmltransform/releases
 
 ## Command line syntax
-
 - Convert: **xmltransform.exe -i inputdata.xml -o output.csv -t template.tmpl**
-- Check verion: **xmltransform.exe -v**
 
-(If -o is not defined result is written to stdout)
+### Command line arguments
+- "-i input.xml" Input file name. If not defined app tries read stdin
+- "-o output.txt" Output file name. If not defined result is send to stdout
+- "-t template.tmpl" alternatively you can use *inline* templat which must starts with *?* e.g. -t "?{{.someValue}}"
+- "-f json" Alternative input format. Currently only *json*, XML is set as default
+- "-v" - Show current verion
+- "-?" - list available command line arguments
+
+## STDIN example
+```
+curl.exe -s "someURL" | xmltransform.exe -f json -t myTemplate.tmpl -o out.txt 
+```
 
 ## Template formating
 - Basic iterate over lines (List all values for XML val1)
