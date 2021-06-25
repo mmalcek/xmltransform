@@ -1,24 +1,25 @@
 # xmltransform - XML to TEXT using GO templates
 Transform XML to text file using GO "text/template"
 
-## Relase duilds (windows, linux, mac)
+## Relase builds (windows, linux, mac)
 https://github.com/mmalcek/xmltransform/releases
 
 ## Command line syntax
-- Convert: **xmltransform.exe -i inputdata.xml -o output.csv -t template.tmpl**
+**xmltransform.exe -i inputdata.xml -o output.csv -t template.tmpl**
 
 ### Command line arguments
 - "-i input.xml" Input file name. If not defined app tries read stdin
 - "-o output.txt" Output file name. If not defined result is send to stdout
-- "-t template.tmpl" alternatively you can use *inline* templat which must starts with *?* e.g. -t "?{{.someValue}}"
+- "-t template.tmpl" Template file. Alternatively you can use *inline* template which must starts with *?* e.g. -t "?{{.someValue}}"
 - "-f json" Alternative input format. Currently only *json*, XML is set as default
 - "-v" - Show current verion
 - "-?" - list available command line arguments
 
-## STDIN example
+### STDIN example
 ```
 curl.exe -s "someURL" | xmltransform.exe -f json -t myTemplate.tmpl -o out.txt 
 ```
+- More info about - https://curl.se/ but you can of course use any tool with stdout
 
 ## Template formating
 - Basic iterate over lines (List all values for XML val1)
