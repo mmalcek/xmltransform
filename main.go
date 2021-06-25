@@ -14,7 +14,7 @@ import (
 	lua "github.com/yuin/gopher-lua"
 )
 
-const version = "1.0.2"
+const version = "1.0.3"
 
 var (
 	luaData  *lua.LState
