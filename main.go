@@ -33,9 +33,9 @@ func init() {
 }
 
 func main() {
-	inputFile := flag.String("i", "", "input file, if not defined read from stdin")
+	inputFile := flag.String("i", "", "input file, if not defined read from stdin (pipe mode)")
 	outputFile := flag.String("o", "", "output file, if not defined stdout is used")
-	textTemplate := flag.String("t", "", "template")
+	textTemplate := flag.String("t", "", "template, file or inline. Inline should start with ? e.g. -t \"?{{.MyValue}}\" ")
 	inputFormat := flag.String("f", "", "input format (json,xml), default xml")
 	getVersion := flag.Bool("v", false, "template")
 	flag.Parse()
@@ -52,6 +52,13 @@ func main() {
 	var data []byte
 	var err error
 	if *inputFile == "" {
+		if fi, err := os.Stdin.Stat(); err != nil {
+			log.Fatal("getStdin: ", err.Error())
+		} else {
+			if fi.Mode()&os.ModeNamedPipe == 0 {
+				log.Fatal("stdin: Error-noPipe")
+			}
+		}
 		data, err = ioutil.ReadAll(os.Stdin)
 		if err != nil {
 			log.Fatal("readStdin: ", err.Error())
@@ -74,9 +81,15 @@ func main() {
 			log.Fatal("mapXML: ", err.Error())
 		}
 	}
-	templateFile, err := ioutil.ReadFile(*textTemplate)
-	if err != nil {
-		log.Fatal("readFile: ", err.Error())
+	textTemplateVar := *textTemplate
+	var templateFile []byte
+	if textTemplateVar[:1] == "?" {
+		templateFile = []byte(textTemplateVar[1:])
+	} else {
+		templateFile, err = ioutil.ReadFile(*textTemplate)
+		if err != nil {
+			log.Fatal("readFile: ", err.Error())
+		}
 	}
 	template, err := template.New("new").Funcs(templateFunctions()).Parse(string(templateFile))
 	if err != nil {
