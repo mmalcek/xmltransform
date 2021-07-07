@@ -17,9 +17,3 @@ Val1: {{$TotalV1}} - {{if gt (int $TotalV1) 50}}Over Budget{{else}}Under Buget{{
 Val3: {{$TotalV3}}
 Created at: {{now  "02.01.2006 - 15:04:05"}}
 ------------------------------------------------------------------------------
-JSON:
-{ 
-{{- range .TOP_LEVEL.DATA_LINE}}
-{"name": {{index .Employee "-ID"}}
-{{- end}}
-------------------------------------------------------------------------------
