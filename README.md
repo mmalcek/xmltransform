@@ -11,7 +11,7 @@ https://github.com/mmalcek/xmltransform/releases
 - "-i input.xml" Input file name. If not defined app tries read stdin
 - "-o output.txt" Output file name. If not defined result is send to stdout
 - "-t template.tmpl" Template file. Alternatively you can use *inline* template which must starts with *?* e.g. -t "?{{.someValue}}"
-- "-f json" Alternative input format. Currently *json, bson, yaml*, XML is set as default
+- "-f json" Alternative input format. Currently *json, bson, yaml*. XML is set as default
 - "-v" - Show current verion
 - "-?" - list available command line arguments
 
@@ -109,6 +109,7 @@ end
 - toJSON - convert input object to JSON
 - toYAML - convert input object to YAML
 - toXML - convert input object to XML
+- toBSON - convert input object to BSON
 - mapJSON - convert stringified JSON to map so it can be used as object or translated to other formats (e.g. "toXML"). Check template.tmpl for example 
 
 ### dateFormat
