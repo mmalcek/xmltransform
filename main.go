@@ -12,6 +12,7 @@ import (
 
 	"github.com/clbanning/mxj/v2"
 	lua "github.com/yuin/gopher-lua"
+	"go.mongodb.org/mongo-driver/bson"
 	"gopkg.in/yaml.v2"
 )
 
@@ -79,6 +80,10 @@ func main() {
 	case "yaml":
 		if err := yaml.Unmarshal(data, &mapData); err != nil {
 			log.Fatal("mapYAML: ", err.Error())
+		}
+	case "bson":
+		if err := bson.Unmarshal(data, &mapData); err != nil {
+			log.Fatal("mapBSON: ", err.Error())
 		}
 	default:
 		mapData, err = mxj.NewMapXml(data)

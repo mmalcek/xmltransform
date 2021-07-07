@@ -21,6 +21,7 @@ import (
 	"github.com/shopspring/decimal"
 	"github.com/spf13/cast"
 	lua "github.com/yuin/gopher-lua"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 func templateFunctions() template.FuncMap {
@@ -73,6 +74,7 @@ func templateFunctions() template.FuncMap {
 		"int":        toInt,
 		"float64":    toFloat64,
 		"toJSON":     toJSON,
+		"toBSON":     toBSON,
 		"toYAML":     toYAML,
 		"toXML":      toXML,
 		"mapJSON":    mapJSON,
@@ -89,6 +91,14 @@ func mapJSON(input string) map[string]interface{} {
 
 func toJSON(data map[string]interface{}) string {
 	if out, err := json.Marshal(data); err != nil {
+		return fmt.Sprintf("err: %s", err.Error())
+	} else {
+		return string(out)
+	}
+}
+
+func toBSON(data map[string]interface{}) string {
+	if out, err := bson.Marshal(data); err != nil {
 		return fmt.Sprintf("err: %s", err.Error())
 	} else {
 		return string(out)
