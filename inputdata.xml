@@ -9,7 +9,6 @@
     <val3>18.3285</val3>
     <Linked_Text VALUE="Magic Bus Company">
     </Linked_Text>
-    <current>true</current>
   </DATA_LINE>
   <DATA_LINE>
     <Employee ID="0023">
@@ -20,7 +19,6 @@
     <val3>5.67343</val3>
     <Linked_Text VALUE="Baltimore Grand">
     </Linked_Text>
-    <current>false</current>
   </DATA_LINE>
   <DATA_LINE>
     <Employee ID="0027">
@@ -31,6 +29,5 @@
     <val3>2.97984</val3>
     <Linked_Text VALUE="Red Light district">
     </Linked_Text>
-    <current>true</current>
   </DATA_LINE>
 </TOP_LEVEL>

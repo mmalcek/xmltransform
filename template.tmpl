@@ -17,3 +17,15 @@ Val1: {{$TotalV1}} - {{if gt (int $TotalV1) 50}}Over Budget{{else}}Under Buget{{
 Val3: {{$TotalV3}}
 Created at: {{now  "02.01.2006 - 15:04:05"}}
 ------------------------------------------------------------------------------
+{{- $new := "{\"employees\": [" }}
+{{- range .TOP_LEVEL.DATA_LINE}}
+{{- $new = print $new "{\"employeeID\":\"" (index .Employee "-ID") "\", \"val1\":" .val1 "}," }}
+{{- end}}
+{{- /* "slice $new 0 (sub (len $new) 1" - remove trailing comma  */}}
+{{- $new = print (slice $new 0 (sub (len $new) 1)) "]}" }}
+JSON formated data:
+{{ $new}}
+------------------------------------------------------------------------------
+JSON Converted to map and marshal to YAML:
+{{toYAML (mapJSON $new)}}
+

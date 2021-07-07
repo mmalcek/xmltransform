@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"log"
 	"math"
 	"math/rand"
 	"regexp"
@@ -74,7 +75,16 @@ func templateFunctions() template.FuncMap {
 		"toJSON":     toJSON,
 		"toYAML":     toYAML,
 		"toXML":      toXML,
+		"mapJSON":    mapJSON,
 	}
+}
+
+func mapJSON(input string) map[string]interface{} {
+	var mapData map[string]interface{}
+	if err := json.Unmarshal([]byte(input), &mapData); err != nil {
+		log.Fatalf("errorMapJSON: %s\n", err.Error())
+	}
+	return mapData
 }
 
 func toJSON(data map[string]interface{}) string {
