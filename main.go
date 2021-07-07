@@ -12,6 +12,7 @@ import (
 
 	"github.com/clbanning/mxj/v2"
 	lua "github.com/yuin/gopher-lua"
+	"gopkg.in/yaml.v2"
 )
 
 const version = "1.0.3"
@@ -74,6 +75,10 @@ func main() {
 	case "json":
 		if err := json.Unmarshal(data, &mapData); err != nil {
 			log.Fatal("mapJSON: ", err.Error())
+		}
+	case "yaml":
+		if err := yaml.Unmarshal(data, &mapData); err != nil {
+			log.Fatal("mapYAML: ", err.Error())
 		}
 	default:
 		mapData, err = mxj.NewMapXml(data)

@@ -14,6 +14,8 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/clbanning/mxj/v2"
+	"github.com/go-yaml/yaml"
 	"github.com/google/uuid"
 	"github.com/shopspring/decimal"
 	"github.com/spf13/cast"
@@ -69,6 +71,33 @@ func templateFunctions() template.FuncMap {
 		"int64":      toInt64,
 		"int":        toInt,
 		"float64":    toFloat64,
+		"toJSON":     toJSON,
+		"toYAML":     toYAML,
+		"toXML":      toXML,
+	}
+}
+
+func toJSON(data map[string]interface{}) string {
+	if out, err := json.Marshal(data); err != nil {
+		return fmt.Sprintf("err: %s", err.Error())
+	} else {
+		return string(out)
+	}
+}
+
+func toYAML(data map[string]interface{}) string {
+	if out, err := yaml.Marshal(data); err != nil {
+		return fmt.Sprintf("err: %s", err.Error())
+	} else {
+		return string(out)
+	}
+}
+
+func toXML(data map[string]interface{}) string {
+	if out, err := mxj.AnyXml(data); err != nil {
+		return fmt.Sprintf("err: %s", err.Error())
+	} else {
+		return string(out)
 	}
 }
 

@@ -106,6 +106,9 @@ end
 - int64
 - int
 - float64
+- toJSON - convert input object to JSON
+- toYAML - convert input object to YAML
+- toXML - convert input object to XML
 
 ### dateFormat
 dateFormat can parse date and time using GO time format
