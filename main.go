@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 	"text/template"
 
 	"github.com/clbanning/mxj/v2"
@@ -72,18 +73,18 @@ func main() {
 		}
 	}
 	var mapData map[string]interface{}
-	switch *inputFormat {
+	switch strings.ToLower(*inputFormat) {
 	case "json":
 		if err := json.Unmarshal(data, &mapData); err != nil {
 			log.Fatal("mapJSON: ", err.Error())
 		}
-	case "yaml":
-		if err := yaml.Unmarshal(data, &mapData); err != nil {
-			log.Fatal("mapYAML: ", err.Error())
-		}
 	case "bson":
 		if err := bson.Unmarshal(data, &mapData); err != nil {
 			log.Fatal("mapBSON: ", err.Error())
+		}
+	case "yaml":
+		if err := yaml.Unmarshal(data, &mapData); err != nil {
+			log.Fatal("mapYAML: ", err.Error())
 		}
 	default:
 		mapData, err = mxj.NewMapXml(data)

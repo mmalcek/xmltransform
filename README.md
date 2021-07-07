@@ -107,9 +107,9 @@ end
 - int
 - float64
 - toJSON - convert input object to JSON
+- toBSON - convert input object to BSON
 - toYAML - convert input object to YAML
 - toXML - convert input object to XML
-- toBSON - convert input object to BSON
 - mapJSON - convert stringified JSON to map so it can be used as object or translated to other formats (e.g. "toXML"). Check template.tmpl for example 
 
 ### dateFormat
