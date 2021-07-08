@@ -12,6 +12,7 @@ jobs:
       - name: compile and release - windows/amd64
         uses: spetr/go-release.action@v1.0.3
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROJECT_NAME: xmltransform
           GOARCH: amd64
           GOOS: windows
