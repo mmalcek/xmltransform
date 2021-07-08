@@ -15,4 +15,4 @@ jobs:
           PROJECT_NAME: xmltransform
           GOARCH: amd64
           GOOS: windows
-          EXTRA_FILES: "README.md LICENSE lua/functions.lua lua/json.lua"
+          EXTRA_FILES: "README.md LICENSE"
