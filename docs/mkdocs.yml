@@ -1,0 +1,6 @@
+site_name: XMLtransform
+theme:
+  name: mkdocs
+  highlightjs: true
+  hljs_languages:
+    - lua
