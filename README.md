@@ -1,3 +1,6 @@
+[![Go](https://github.com/mmalcek/xmltransform/actions/workflows/go.yml/badge.svg)](https://github.com/mmalcek/xmltransform/actions/workflows/go.yml)
+[![CodeQL](https://github.com/mmalcek/xmltransform/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mmalcek/xmltransform/actions/workflows/codeql-analysis.yml)
+
 # xmltransform - XML to TEXT using GO templates
 Transform XML to text file using GO "text/template"
 
