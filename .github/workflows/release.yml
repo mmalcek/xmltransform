@@ -9,22 +9,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: compile and release - darwin/amd64
-        uses: spetr/go-release.action@v1.0.3
-        env:
-          PROJECT_NAME: xmltransform
-          GOARCH: amd64
-          GOOS: darwin
-          EXTRA_FILES: "README.md LICENSE lua/functions.lua lua/json.lua"
-
-      - name: compile and release - linux/amd64
-        uses: spetr/go-release.action@v1.0.3
-        env:
-          PROJECT_NAME: xmltransform
-          GOARCH: amd64
-          GOOS: linux
-          EXTRA_FILES: "README.md LICENSE lua/functions.lua lua/json.lua"
-
       - name: compile and release - windows/amd64
         uses: spetr/go-release.action@v1.0.3
         env:
