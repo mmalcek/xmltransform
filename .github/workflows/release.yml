@@ -4,31 +4,12 @@ on: release
 
 jobs:
   update-mkdocs:
-    name: Update mkdocs documentation
+    name: Deploy mkdocs documentation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - uses: actions/setup-python@v2
         with:
-          python-version: "3.9"
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install mkdocs
-      - name: Build
-        run: mkdocs gh-deploy
-  release-windows-amd64:
-    name: release windows/amd64
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: compile and release
-        uses: mmalcek/go-release.action@v1.0.3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PROJECT_NAME: xmltransform
-          GOARCH: amd64
-          GOOS: windows
-          EXTRA_FILES: "README.md LICENSE lua/json.lua lua/functions.lua"
+          python-version: 3.x
+      - run: pip install mkdocs
+      - run: mkdocs gh-deploy --force
