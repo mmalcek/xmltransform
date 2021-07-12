@@ -76,7 +76,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#getting-started" class="nav-link">Getting started</a>
+            <li class="nav-item" data-level="1"><a href="#xml-or-other-formats-to-text-using-go-templates" class="nav-link">XML (or other formats) to TEXT using GO templates</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#key-features" class="nav-link">Key features</a>
               <ul class="nav flex-column">
@@ -109,8 +109,10 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="getting-started">Getting started</h1>
-<p>Transform various input formats to text using GO templates</p>
+<p><a href="https://github.com/mmalcek/xmltransform/actions/workflows/go.yml"><img alt="Go" src="https://github.com/mmalcek/xmltransform/actions/workflows/go.yml/badge.svg" /></a>
+<a href="https://github.com/mmalcek/xmltransform/actions/workflows/"><img alt="CodeQL" src="https://github.com/mmalcek/xmltransform/actions/workflows/codeql-analysis.yml/badge.svg" /></a></p>
+<h1 id="xml-or-other-formats-to-text-using-go-templates">XML (or other formats) to TEXT using GO templates</h1>
+<p>Transform XML to text file using GO "text/template"</p>
 <h2 id="key-features">Key features</h2>
 <ul>
 <li>Various input formats <strong>(json, bson, yaml, xml)</strong></li>
@@ -154,6 +156,11 @@
 <li>Inline template</li>
 </ul>
 <pre><code class="language-sh">xmltransform.exe -i testdata.json -f json -o output.csv -t &quot;?{{toXML .}}&quot;
+</code></pre>
+<ul>
+<li>Working example with inline template</li>
+</ul>
+<pre><code>curl.exe -s &quot;https://api.predic8.de/shop/products/&quot; | xmltransform.exe -f json -t &quot;?{{range .products}}\&quot;{{.name}}\&quot;,{{.product_url}}{{print \&quot;\n\&quot;}}{{end}}&quot; 
 </code></pre>
 <h2 id="template-formating">Template formating</h2>
 <ul>
@@ -332,5 +339,5 @@ end
 
 <!--
 MkDocs version : 1.2.1
-Build Date UTC : 2021-07-12 13:43:46.327355+00:00
+Build Date UTC : 2021-07-12 13:46:01.138739+00:00
 -->
