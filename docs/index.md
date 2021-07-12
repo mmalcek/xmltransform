@@ -23,11 +23,11 @@ Transform various input formats to text using GO templates
 #### Examples
 - Basic
 ```sh
-xmltransform.exe -i inputdata.xml -o output.csv -t template.tmpl
+xmltransform.exe -i testdata.xml -o output.csv -t template.tmpl
 ```
 - JSON input
 ```sh
-xmltransform.exe -i inputdata.json -f json -o output.csv -t template.tmpl
+xmltransform.exe -i testdata.json -f json -o output.csv -t template.tmpl
 ```
 - STDIN
 ```sh
@@ -37,7 +37,7 @@ More info about curl [here](https://curl.se/) but you can of course use any tool
 
 - Inline template
 ```sh
-xmltransform.exe -i inputdata.json -f json -o output.csv -t "?{{toXML .}}"
+xmltransform.exe -i testdata.json -f json -o output.csv -t "?{{toXML .}}"
 ```
 
 ## Template formating
@@ -57,7 +57,7 @@ xmltransform.exe -i inputdata.json -f json -o output.csv -t "?{{toXML .}}"
 ```
 {{if gt (int $val1) (int $val2)}}Value1{{else}}Value2{{end}} is greater
 ```
-Check template.tmpl and inputdata.xml for more advanced example
+Check template.tmpl and testdata.xml for more advanced example
 
 (more detailed info on https://golang.org/pkg/text/template/ )
 

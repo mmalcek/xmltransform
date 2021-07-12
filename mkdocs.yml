@@ -1,4 +1,5 @@
 site_name: XMLtransform
+site_url: https://mmalcek.github.io/xmltransform
 theme:
   name: mkdocs
   highlightjs: true

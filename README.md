@@ -8,7 +8,7 @@ Transform XML to text file using GO "text/template"
 https://github.com/mmalcek/xmltransform/releases
 
 ## Command line syntax
-**xmltransform.exe -i inputdata.xml -o output.csv -t template.tmpl**
+**xmltransform.exe -i testdata.xml -o output.csv -t template.tmpl**
 
 ### Command line arguments
 - "-i input.xml" Input file name. If not defined app tries read stdin
