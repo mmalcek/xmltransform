@@ -1,5 +1,8 @@
 site_name: XMLtransform
 site_url: https://mmalcek.github.io/xmltransform
+nav:
+  - Home: README.md
+  - Examples: examples.md
 theme:
   name: mkdocs
   highlightjs: true
