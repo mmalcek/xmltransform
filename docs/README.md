@@ -1,8 +1,8 @@
 [![Go](https://github.com/mmalcek/xmltransform/actions/workflows/go.yml/badge.svg)](https://github.com/mmalcek/xmltransform/actions/workflows/go.yml)
 [![CodeQL](https://github.com/mmalcek/xmltransform/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mmalcek/xmltransform/actions/workflows/)
 
-# Getting started
-Transform various input formats to text using GO templates
+# XML (or other formats) to TEXT using GO templates
+Transform XML to text file using GO "text/template"
 
 ## Key features
 - Various input formats **(json, bson, yaml, xml)**
