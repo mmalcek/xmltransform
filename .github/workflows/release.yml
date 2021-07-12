@@ -3,14 +3,14 @@ name: releaseBuild
 on: release
 
 jobs:
-  release-linux-amd64:
-    name: release linux/amd64
+  release-windows-amd64:
+    name: release windows/amd64
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
       - name: compile and release
-        uses: mmalcek/go-release.action@v1.0.2
+        uses: mmalcek/go-release.action@v1.0.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROJECT_NAME: xmltransform
