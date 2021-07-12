@@ -1,3 +1,4 @@
+<img src="img/bafi.svg" height="70" style="border: 0px" />
 [![Go](https://github.com/mmalcek/xmltransform/actions/workflows/go.yml/badge.svg)](https://github.com/mmalcek/xmltransform/actions/workflows/go.yml)
 [![CodeQL](https://github.com/mmalcek/xmltransform/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mmalcek/xmltransform/actions/workflows/)
 
