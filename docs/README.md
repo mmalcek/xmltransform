@@ -42,6 +42,10 @@ More info about curl [here](https://curl.se/) but you can of course use any tool
 ```sh
 xmltransform.exe -i testdata.json -f json -o output.csv -t "?{{toXML .}}"
 ```
+- Working example with inline template
+```
+curl.exe -s "https://api.predic8.de/shop/products/" | xmltransform.exe -f json -t "?{{range .products}}\"{{.name}}\",{{.product_url}}{{print \"\n\"}}{{end}}" 
+```
 
 ## Template formating
 - Basic iterate over lines
