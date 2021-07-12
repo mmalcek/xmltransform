@@ -1,7 +1,6 @@
 [![Go](https://github.com/mmalcek/xmltransform/actions/workflows/go.yml/badge.svg)](https://github.com/mmalcek/xmltransform/actions/workflows/go.yml)
 [![CodeQL](https://github.com/mmalcek/xmltransform/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mmalcek/xmltransform/actions/workflows/)
 # XML (or other formats) to TEXT using GO templates
-<img src="img/bafi.svg" height="70" style="border: 0px" /> 
 Transform XML to text file using GO "text/template"
 
 ## Key features
